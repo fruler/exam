@@ -12,19 +12,23 @@ $(function(){
 		alert("Fsf");
 		 var ob=e.target; //dom对象
 		   alert(ob.value);
-		if(ob.value="1")
+
+		if(ob.value=="1")
 			{
 			window.location.href="add.jsp";
 			}
-		else if(ob.value="2")
-			{
+		else if(ob.value=="2")
+       
+		{
 			window.location.href="delete.jsp";
-			
-			}
-		else if(ob.value="3")
+		}
+		
+
+		else if(ob.value=="3")
 			{
-			window.location.href="bianji.jsp";
+			window.location.href="edit.jsp";
 			}
+		
 		else {
 			
 			window.location.href="show1.jsp";
@@ -38,15 +42,22 @@ $(function(){
 </script>
 <style type="text/css">
 table.collapse{
+width:1000;
 width:100%;
+
 
 border:1px solid red;
 border-collapse: collapse;
 }
 td{
 text-align:center;
+
+width:250px;
+height:70px;
+
 width:25%px;
 height:30px;
+
 border:1px solid red;
 }
 </style>

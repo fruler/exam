@@ -54,13 +54,13 @@ function f(){
 		  var option=selectdom.options[index];
 
 		  $.ajax({
-			  url:"newshow",
+			  url:"fupdate2",
 			  type:"post",
-			  data:{"title":$("#title").val(),"description":$("#description").val(),"name":option.value},
+			  data:{"id":$("#hidden").val(),"title":$("#title").val(),"description":$("#description").val(),"name":option.value},
 			  dataType:"text",
 			  success:function(data){
 			  alert("ff");
-			  window.location.href="addsuccess.jsp"
+			  window.location.href="editsuccess.jsp"
 			  } ,
 			  error:function(){
 				  alert("Ff");
@@ -116,7 +116,7 @@ td {
 <div  align="center">
        <table class="collapse">
 
-       <caption style="font-weight: bold;font-size:50pt;">增加</caption>
+       <caption style="font-weight: bold;font-size:50pt;">编辑</caption>
        <tr>
           <td>title:</td>
           <td><input type="text" id="title" name="title" value=""/></td>
@@ -130,9 +130,9 @@ td {
            <td><select id="select"></select></td>
        </table>
 
-       <input type="button" class="button" value="添加" id="fsubmit" onclick="f();"/><input type="reset" value="重置" class="button" /> 
+       <input type="button" class="button" value="编辑" id="fsubmit" onclick="f();"/><input type="reset" value="重置" class="button" /> 
 
-
+ <input type="hidden"  id="hidden" value="<%=session.getAttribute("id").toString() %>">
 </div>
 </form>
 </body>

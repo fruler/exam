@@ -3,17 +3,8 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-
-
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import java.sql.SQLException;
-
+import java.sql.Statement;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,18 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.dao;
 import dao.daoimpl;
-import www.bean.Language;
+import www.bean.Film;
 
 /**
- * Servlet implementation class newshow
+ * Servlet implementation class fupdate2
  */
-public class newshow extends HttpServlet {
+public class fupdate2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public newshow() {
+    public fupdate2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,34 +43,24 @@ public class newshow extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
-
+		String id=request.getParameter("id");
 		String title=request.getParameter("title");
 		String description=request.getParameter("description");
 		String name=request.getParameter("name");
-		System.out.println(title+","+description+","+name);
-		dao  dao=new daoimpl();
-		ConnectionFactory c=ConnectionFactory.getinstance();
-		int id=(int)(Math.random()*100+10);
-		////System.out.println(cd.get(cd.getTimeInMillis()));
-		//DateFormat f=new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		System.out.println(id+","+title+","+description+","+name);
+		int id1=Integer.parseInt(id);
+	    ConnectionFactory c=ConnectionFactory.getinstance();
+	    dao  dao=new daoimpl();
 		
-		int film_id=(int)(Math.random()*1000+1001);
-		
-		try {
-			//Date dt=f.parse("2017-11-16 12:02:20");
-		//dt.
-			//String time=f.format(dt);
-			
-			Connection con=c.getConnection();
-			dao.insertnewshow(con, id,name);
-			dao.insertnewshow1(con, film_id, title, description, id);
-			con.close();
-	}//String title
 	
 
+		try {
+			Connection con=c.getConnection();
+			dao.update(con, id1, title, description);
+			
+			con.close();
+	}
 		catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,18 +68,11 @@ public class newshow extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-
-		out.print("nihao");
-	}
-		
-
-
+	  out.println("arg0");		 
 	}
 
-
-
+}
