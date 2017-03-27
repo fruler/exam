@@ -1,0 +1,8 @@
+com\hand\ssm\mapper\CustomerMapper.class
+com\hand\ssm\service\CustomerService.class
+com\hand\ssm\dto\Fenye.class
+com\hand\ssm\service\impl\CustomerServiceImpl.class
+com\hand\ssm\controller\Fhandler.class
+com\hand\ssm\dto\Address.class
+com\hand\ssm\dto\Customer.class
+com\hand\ssm\dto\Page.class

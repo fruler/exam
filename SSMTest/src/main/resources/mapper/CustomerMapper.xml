@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hand.ssm.mapper.CustomerMapper">
+    <select id="selectuserinfo" resultType="com.hand.ssm.dto.Customer">
+        select * from customer
+        </select>
+    <select id="selectCountRow" resultType="java.lang.Integer">
+        select count(*) from customer,address where customer.address_id=address.address_id
+        </select>
+        <select id="selectalluser" resultType="com.hand.ssm.dto.Customer" parameterType="com.hand.ssm.dto.Fenye">
+		select customer_id,store_id,first_name ,last_name,email,customer.address_id,active,create_date,customer.last_update,address from customer,address where customer.address_id=address.address_id limit #{startpage},#{count}
+
+	</select>
+	<select id="selectaddress" resultType="com.hand.ssm.dto.Address">
+	    select distinct address ,address_id from address 
+	    </select>
+	    <delete id="fdelete" parameterType="java.lang.Integer">
+	       SET FOREIGN_KEY_CHECKS=0;
+       DELETE FROM customer WHERE customer_id=#{id};
+       SET FOREIGN_KEY_CHECKS=1;
+
+	        </delete>
+	       
+	        <insert id="finsert" parameterType="com.hand.ssm.dto.Customer">
+	    SET FOREIGN_KEY_CHECKS=0;
+	            insert into customer(store_id,first_name,last_name,email,address_id,create_date)values(#{store_id},#{first_name},#{last_name},#{email},#{address_id},#{create_date});
+	           SET FOREIGN_KEY_CHECKS=1;
+	            </insert>
+	              <update id="fupdate" parameterType="com.hand.ssm.dto.Customer">
+	    SET FOREIGN_KEY_CHECKS=0;
+	            update  customer set first_name=#{first_name},last_name=#{last_name},email=#{email},address_id=#{address_id} where customer_id=#{customer_id};
+	           SET FOREIGN_KEY_CHECKS=1;
+	            </update>
+</mapper>
